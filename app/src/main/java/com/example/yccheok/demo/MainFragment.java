@@ -14,13 +14,21 @@ import android.view.ViewGroup;
  */
 public class MainFragment extends Fragment {
     @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+        android.util.Log.i("CHEOK", "MainFragment onCreate");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ViewPager viewPager = (ViewPager)view.findViewById(R.id.view_pager);
+        // http://stackoverflow.com/questions/15588120/fragmentpageradapter-getitem-is-not-being-triggered
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        ViewPager viewPager = (ViewPager)view.findViewById(R.id.view_pager);
 
         viewPager.setAdapter(sectionsPagerAdapter);
 
@@ -42,8 +50,7 @@ public class MainFragment extends Fragment {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            return 1;
         }
 
         @Override

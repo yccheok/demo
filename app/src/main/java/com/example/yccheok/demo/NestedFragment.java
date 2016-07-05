@@ -20,10 +20,13 @@ public class NestedFragment extends Fragment {
     public NestedFragment() {
     }
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+        android.util.Log.i("CHEOK", "NestedFragment onCreate " + getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+
     public static NestedFragment newInstance(int sectionNumber) {
         NestedFragment fragment = new NestedFragment();
         Bundle args = new Bundle();
